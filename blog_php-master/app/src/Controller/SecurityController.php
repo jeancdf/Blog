@@ -6,6 +6,7 @@ use App\Factory\PDOFactory;
 use App\Manager\UserManager;
 use App\Route\Route;
 use DateTimeImmutable;
+use FirebaseJWTJWT;
 
 class SecurityController extends AbstractController
 {

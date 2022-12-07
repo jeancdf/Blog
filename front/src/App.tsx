@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Login from "./Component/Login"
 import Form, {formDataInterface} from "./Component/Form";
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
         <div>
             <h1>User</h1>
             <Form/>
+            <Login/>
         </div>
     );
 }

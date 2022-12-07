@@ -27,7 +27,7 @@ export default function Form() {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        fetch('http://localhost:5656/signup', {
+        fetch('http://localhost:5656/login', {
             method: "POST",
             mode: "cors",
             body: new URLSearchParams({
@@ -59,7 +59,7 @@ export default function Form() {
             <br/>
             <input type="password" name="password" onChange={handleChange}/>
             <br/>
-            <button type="submit">Sign UP</button>
+            <button type="submit">login</button>
         </form>
     )
 }

@@ -6,9 +6,6 @@
 use App\Route\Route;
 
 require_once 'vendor/autoload.php';
-declare(strict_types=1);
-use FirebaseJWTJWT;
-
 
 $controllerDir = dirname(__FILE__) . '/src/Controller';
 $dirs = scandir($controllerDir);
