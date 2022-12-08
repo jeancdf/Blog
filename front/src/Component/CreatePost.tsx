@@ -61,10 +61,11 @@ export default function CreatePost() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="content" onChange={handleChange}/>
+        <h2>Create a Post</h2>
+            <form onSubmit={handleSubmit} className=" text-center">
+                <textarea  name="content" placeholder="Blog post" cols={40} rows={10} onChange={handleChange}></textarea>
                 <br/>
-                <button type="submit">Create Post</button>
+                <button type="submit" className="btn btn-primary m-2">Create Post</button>
             </form>
         </>
     )

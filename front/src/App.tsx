@@ -5,6 +5,7 @@ import Form from "./Component/Form";
 import Posts from './Component/Posts';
 import CreatePost from "./Component/CreatePost"
 import {setJwt, getJwt, deleteJwt} from "./variables/JWT"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     const mounted = useRef<boolean>(false)
@@ -27,11 +28,11 @@ function App() {
 
     return (
         <div className='content'>
-            <h1>User</h1>
+            <h1>React Blog</h1>
             {
                 jwt ?
                 <>
-                    <button onClick={deleteJwt}>disconnect</button>
+                    <button onClick={deleteJwt} className="btn btn-primary">disconnect</button>
                     <CreatePost/>
                 </>
                 :     

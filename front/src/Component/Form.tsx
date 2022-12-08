@@ -54,12 +54,12 @@ export default function Form() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="username" onChange={handleChange}/>
+        <form onSubmit={handleSubmit} className=" text-center">
+            <input type="text" name="username" onChange={handleChange} className=" m-1"/>
             <br/>
-            <input type="password" name="password" onChange={handleChange}/>
+            <input type="password" name="password" onChange={handleChange} className=" m-1"/>
             <br/>
-            <button type="submit">Sign UP</button>
+            <button type="submit" className="btn btn-primary m-2">Sign Up</button>
         </form>
     )
 }

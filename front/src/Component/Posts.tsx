@@ -21,7 +21,7 @@ export default function Posts() {
     }, [])
 
     return(
-        <div>
+        <div className="border m-3">
             {
                 posts.map(element => {
                         return (
