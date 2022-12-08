@@ -17,15 +17,16 @@ class PostController extends AbstractController
     {   
         $manger = new PostManager(new PDOFactory());
         $posts = $manger->getAllPosts();
-        var_dump(json_encode($posts));
+        // var_dump($posts);
+
     }
 
     #[Route('/createPost', name: "homepage", methods: ["GET","POST"])]
     public function showOne()
     {
         $tok = $_POST['token'];
-        // var_dump($token);
-        // if (! preg_match('/Bearers(S+)/', $tok, $matches)) {
+        // var_dump($_server);
+        // if (! preg_match('/Bearers(S+)/', $_server, $matches)) {
         //     echo 'Token not found1';
         //     exit;
         // }

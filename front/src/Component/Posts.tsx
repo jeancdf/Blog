@@ -2,7 +2,7 @@ import {ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useRef, use
 
 export default function Posts() {
     const mounted = useRef<boolean>(false)
-    const [posts, setPosts] = useState('');
+    const [posts, setPosts] = useState<Array<Array<string>>>([]);
 
     useEffect(() => {
         if (!mounted.current) {
@@ -13,17 +13,26 @@ export default function Posts() {
                     "Content-type":  "application/x-www-form-urlencoded"
                 })
             })
-                .then(data => data.json())
-                .then(data => console.log(data))
+                .then(data => data.text())
+                .then(data => setPosts(data.split('//').map(elemet => elemet.split('œ'))))
         }
 
         mounted.current = true
     }, [])
+
     return(
         <div>
-            {/* {posts.forEach(element => {
-                console.log(element)
-            });} */}
+            {
+                posts.map(element => {
+                    return (
+                        <div>
+                            {element[0]}
+                            <br />
+                            {element[1]}
+                        </div>
+                    )
+                })
+            }
         </div>
     )
 }

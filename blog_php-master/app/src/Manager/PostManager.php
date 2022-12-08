@@ -16,7 +16,8 @@ class PostManager extends BaseManager
         $users = [];
 
         while ($data = $query->fetch(\PDO::FETCH_ASSOC)) {
-            $users[] = new Post($data);
+            echo $data['content']. 'œ' .$data['lastUpdated']. '//';
+            $users[] = [$data['content'],$data['lastUpdated']];
         }
 
         return $users;

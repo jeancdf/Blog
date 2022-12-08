@@ -1,6 +1,6 @@
 import {ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useRef, useState} from "react";
 import {btoa} from "buffer";
-import {setJwt, getJwt, deleteJwt} from "../variables/JWT"
+import {setJwt, getJwt} from "../variables/JWT"
 export interface formDataInterface {
     username: string,
     password: string
@@ -66,7 +66,6 @@ export default function Form() {
                 <br/>
                 <button type="submit">login</button>
             </form>
-            <button onClick={deleteJwt}>disconnect</button>
         </>
     )
 }
