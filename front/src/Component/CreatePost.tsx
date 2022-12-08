@@ -64,7 +64,7 @@ export default function CreatePost() {
             <form onSubmit={handleSubmit}>
                 <input type="text" name="content" onChange={handleChange}/>
                 <br/>
-                <button type="submit">login</button>
+                <button type="submit">Create Post</button>
             </form>
         </>
     )

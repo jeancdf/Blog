@@ -28,10 +28,19 @@ function App() {
     return (
         <div className='content'>
             <h1>User</h1>
-            <Form/>
-            <Login/>
-            <button onClick={deleteJwt}>disconnect</button>
-            <CreatePost/>
+            {
+                jwt ?
+                <>
+                    <button onClick={deleteJwt}>disconnect</button>
+                    <CreatePost/>
+                </>
+                :     
+                <>
+                    <Form/>
+                    <Login/>
+                </>
+            }
+
             <Posts/>
         </div>
     );

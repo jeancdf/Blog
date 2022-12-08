@@ -24,13 +24,20 @@ export default function Posts() {
         <div>
             {
                 posts.map(element => {
-                    return (
-                        <div>
-                            {element[0]}
-                            <br />
-                            {element[1]}
-                        </div>
-                    )
+                    if(element[0] && element[0])
+                    {
+                        return (
+                            <div className="post">
+                                <span>Content</span>:
+                                <br />
+                                {element[0]}
+                                <br />
+                                <span>Date</span>:
+                                <br />
+                                {element[1]}
+                            </div>
+                            )
+                        }
                 })
             }
         </div>

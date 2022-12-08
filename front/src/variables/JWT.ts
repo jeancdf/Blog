@@ -7,4 +7,5 @@ export function getJwt(): string | null {
 }
 export function deleteJwt(): void {
     localStorage.removeItem(storagekey);
+    window.location.reload();
 }

@@ -42,8 +42,8 @@ export default function Form() {
         })
             .then(data => data.text())
             .then(json => {
-                console.log(json);
                 setJwt(json);
+                window.location.reload();
             })
     }
 
