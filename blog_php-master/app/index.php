@@ -3,9 +3,10 @@
     header("Access-Control-Allow-Credentials: true");
     header("Access-Control-Allow-Headers: authorization");
     header("Content-Type: application/json");
+    
 use App\Route\Route;
 
-require_once 'vendor/autoload.php';
+include 'vendor/autoload.php';
 
 $controllerDir = dirname(__FILE__) . '/src/Controller';
 $dirs = scandir($controllerDir);

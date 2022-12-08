@@ -6,20 +6,20 @@ export interface formDataInterface {
     password: string
 }
 
-export default function Form() {
+export default function CreatePost() {
 
     const mounted = useRef<boolean>(false)
 
-    const [formData, setFormData] = useState<formDataInterface>({password: "", username: ""})
+    const [formData, setFormData] = useState({content: ""});
+    const [jwt,setJwt] = useState("");
 
     useEffect(() => {
         if (!mounted.current) {
-            if (getJwt()) {
+            const availablejwt = getJwt()
+            if (availablejwt) {
+                setJwt(availablejwt)
                 console.log('your logged');
             }
-            // fetch("http://localhost:5656")
-            //     .then(data => data.json())
-            //     .then(json => console.log(json))
         }
 
         mounted.current = true
@@ -29,21 +29,23 @@ export default function Form() {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        fetch('http://localhost:5656/login', {
+        fetch('http://localhost:5656/createPost', {
             method: "POST",
             mode: "cors",
             body: new URLSearchParams({
-                ...formData
+                ...formData,
+                token: `${jwt}`
             }),
             credentials: "include",
             headers: new Headers({
+                "Authorization" : `Bearer ${jwt}`,
                 "Content-type":  "application/x-www-form-urlencoded"
             })
         })
             .then(data => data.text())
             .then(json => {
+                console.log(jwt)
                 console.log(json);
-                setJwt(json);
             })
     }
 
@@ -60,13 +62,10 @@ export default function Form() {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="username" onChange={handleChange}/>
-                <br/>
-                <input type="password" name="password" onChange={handleChange}/>
+                <input type="text" name="content" onChange={handleChange}/>
                 <br/>
                 <button type="submit">login</button>
             </form>
-            <button onClick={deleteJwt}>disconnect</button>
         </>
     )
 }

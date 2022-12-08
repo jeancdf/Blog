@@ -6,7 +6,8 @@ use App\Factory\PDOFactory;
 use App\Manager\UserManager;
 use App\Route\Route;
 use DateTimeImmutable;
-use FirebaseJWTJWT;
+use Firebase\JWT\JWT;
+
 
 class SecurityController extends AbstractController
 {
@@ -27,20 +28,24 @@ class SecurityController extends AbstractController
                 $id = $user->getId();
                 $_SESSION["admin"] = $user->getRoles();
                 $_SESSION["id"] = $id;
-                echo 'connected';
                 $secretKey  = 'bGS6lzFqvvSQ8ALbOxatm7/Vk7mLQyzqaS34Q4oR1ew=';
                 $issuedAt   = new DateTimeImmutable();
-                $expire     = $issuedAt->modify('+6 minutes')->getTimestamp();      // Ajoute 60 secondes
-                $serverName = "your.domain.name";
-                $username   = "username";                                           // Récupéré à partir des données POST filtré
+                $expire     = $issuedAt->modify('+6 day')->getTimestamp();      // Ajoute 6 days
+                $serverName = "localhost";
 
+                
                 $data = [
                     'iat'  => $issuedAt->getTimestamp(),         // Issued at:  : heure à laquelle le jeton a été généré
                     'iss'  => $serverName,                       // Émetteur
                     'nbf'  => $issuedAt->getTimestamp(),         // Pas avant..
                     'exp'  => $expire,                           // Expiration
-                    'userName' => $username,                     // Nom d'utilisateur
+                    'ID' => $id,                     // Nom d'utilisateur
                 ];
+                echo JWT::encode(
+                    $data,
+                    $secretKey,
+                    'HS512'
+                );
                 exit;
             }
         echo 'wrong';
@@ -54,25 +59,6 @@ class SecurityController extends AbstractController
             $userManager = new UserManager(new PDOFactory());
             $userManager->insertUser($formUsername,$formPwd);
             echo "account created!!!";
-        }
-    }
-    #[Route('/logout', name: "logout", methods: ["GET","POST"])]
-    public function logout() {
-        session_start();
-        unset($_SESSION['id']);
-        session_destroy();
-        header('Location: /login');
-        exit(); 
-    }
-    #[Route('/users', name: "users", methods: ["GET","POST"])]
-    public function users() {
-        session_start();
-        if($_SESSION && ($_SESSION['admin'] == 1) ) {
-            $path = "views/users.php";
-            require_once $path;
-        }else {
-            header('Location: /login');
-            exit(); 
         }
     }
 }
