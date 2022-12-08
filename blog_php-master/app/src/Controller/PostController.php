@@ -17,6 +17,7 @@ class PostController extends AbstractController
     {   
         $manger = new PostManager(new PDOFactory());
         $posts = $manger->getAllPosts();
+        echo json_encode($posts);
         // var_dump($posts);
 
     }
@@ -24,7 +25,8 @@ class PostController extends AbstractController
     #[Route('/createPost', name: "homepage", methods: ["GET","POST"])]
     public function showOne()
     {
-        $tok = $_POST['token'];
+
+        $tok = getallheaders()['authorization'];
         // var_dump($_server);
         // if (! preg_match('/Bearers(S+)/', $_server, $matches)) {
         //     echo 'Token not found1';

@@ -13,8 +13,8 @@ export default function Posts() {
                     "Content-type":  "application/x-www-form-urlencoded"
                 })
             })
-                .then(data => data.text())
-                .then(data => setPosts(data.split('//').map(elemet => elemet.split('œ'))))
+                .then(data => data.json())
+                .then(data => setPosts(data))
         }
 
         mounted.current = true
@@ -24,8 +24,6 @@ export default function Posts() {
         <div>
             {
                 posts.map(element => {
-                    if(element[0] && element[0])
-                    {
                         return (
                             <div className="post">
                                 <span>Content</span>:
@@ -37,8 +35,7 @@ export default function Posts() {
                                 {element[1]}
                             </div>
                             )
-                        }
-                })
+                        })
             }
         </div>
     )
