@@ -1,5 +1,6 @@
 import {ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useRef, useState} from "react";
 import {btoa} from "buffer";
+import {BrowserRouter, Routes ,Route, Link} from "react-router-dom";
 
 export interface formDataInterface {
     username: string,
@@ -11,6 +12,9 @@ export default function Form() {
     const mounted = useRef<boolean>(false)
 
     const [formData, setFormData] = useState<formDataInterface>({password: "", username: ""})
+    var state = {
+        showMessage: false
+      }
 
     useEffect(() => {
         if (!mounted.current) {
@@ -59,7 +63,13 @@ export default function Form() {
             <br/>
             <input type="password" name="password" onChange={handleChange} className=" m-1"/>
             <br/>
-            <button type="submit" className="btn btn-primary m-2">Sign Up</button>
+            <Link to='createPost' ><button type="submit" className=" btn btn-primary m-2" >Sign Up</button></Link>
+            <br />
+            <Link to='login' ><button type="submit" className=" btn btn-danger m-2" >Already have an account ?</button></Link>
         </form>
     )
 }
+function onButtonClickHandler(arg0: () => void) {
+    throw new Error("Function not implemented.");
+}
+

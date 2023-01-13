@@ -1,12 +1,13 @@
 import {ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useRef, useState} from "react";
 import {btoa} from "buffer";
 import {setJwt, getJwt} from "../variables/JWT"
+import {BrowserRouter, Routes ,Route, Link} from "react-router-dom";
 export interface formDataInterface {
     username: string,
     password: string
 }
 
-export default function Form() {
+export default function Form(props:any) {
 
     const mounted = useRef<boolean>(false)
 
@@ -65,6 +66,7 @@ export default function Form() {
                 <input type="password" name="password" onChange={handleChange} className=" m-1"/>
                 <br/>
                 <button type="submit" className=" btn btn-primary m-2">login</button>
+                <Link to='form' ><button type="submit" className=" btn btn-warning m-2">Register Instead</button></Link>
             </form>
         </>
     )
